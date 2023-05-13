@@ -49,7 +49,7 @@ jobs:
           name: API Build
           command: |
             npm run api:build
-      -run:
+      - run:
           name: Deploy apps
           command: |
             deploy
