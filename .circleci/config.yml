@@ -50,9 +50,13 @@ jobs:
           command: |
             npm run api:build
       - run:
-          name: Deploy apps
+          name: Deploy frontend
           command: |
-            deploy
+            npm run frontend:deploy
+      - run:
+          name: Deploy backend
+          command: |
+          npm run api:deploy
   -run:
   deploy:
     docker:
