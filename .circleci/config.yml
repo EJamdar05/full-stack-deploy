@@ -56,7 +56,7 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-          npm run api:deploy
+            npm run api:deploy
   -run:
   deploy:
     docker:
