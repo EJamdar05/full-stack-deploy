@@ -34,11 +34,11 @@ jobs:
 
             
 workflows:
-  udagram:
-    jobs:
-      - build
-          filters:
-            branches:
-              only:
-                - main
+    build:
+      jobs:
+        - build:
+            filters:
+              branches:
+                only:
+                  - main
 
