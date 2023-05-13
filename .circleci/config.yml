@@ -15,6 +15,8 @@ jobs:
       - node/install:
           node-version: '14.15'         
       - checkout
+      - aws-cli/setup
+      - aws-elastic-beanstalk/setup
       # Use root level package.json to install dependencies in the frontend app
       - run:
           name: Install Front-End Dependencies
@@ -33,7 +35,7 @@ jobs:
             echo $(node --version)
             echo "NPM --version" 
             echo $(npm --version)
-            npm run api:install
+            npm run backend:install
       # TODO: Lint the frontend
       - run:
           name: Front-End Lint
@@ -48,24 +50,16 @@ jobs:
       - run:
           name: API Build
           command: |
-            npm run api:build
-  -run:
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    steps:
-      - node/install:
-          node-version: '14.15' 
-      - eb/setup
-      - aws-cli/setup
-      - checkout
-      - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
+            npm run backend:build
+      -run:
+          name: Deploy frontend
           command: |
-            echo "# TODO: Install, build, deploy in both apps"
-            npm run deploy
+            npm run frontend:deploy
+      -run:
+          name: Deploy API
+          command: |
+            npm run backend:deploy
+
             
 workflows:
   udagram:
