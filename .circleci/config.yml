@@ -49,6 +49,10 @@ jobs:
           name: API Build
           command: |
             npm run api:build
+      -run:
+          name: Deploy apps
+          command: |
+            deploy
   -run:
   deploy:
     docker:
